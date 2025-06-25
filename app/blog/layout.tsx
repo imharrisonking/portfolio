@@ -19,7 +19,7 @@ function CopyButton() {
         setText('Copied')
         navigator.clipboard.writeText(currentUrl)
       }}
-      className="font-base flex items-center gap-1 text-center text-sm text-gray-500 transition-colors dark:text-gray-400"
+      className="font-base bg-accent/5 flex items-center gap-1 rounded-md px-1 py-1.5 text-center text-sm transition-colors"
       type="button"
     >
       <TextMorph>{text}</TextMorph>
@@ -37,7 +37,7 @@ export default function LayoutBlogPost({
     <>
       <div className="pointer-events-none fixed top-0 left-0 z-10 h-12 w-full bg-gray-100 to-transparent backdrop-blur-xl [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] dark:bg-gray-950" />
       <ScrollProgress
-        className="fixed top-0 z-20 h-0.5 bg-gray-300 dark:bg-gray-600"
+        className="bg-accent fixed top-0 z-20 h-0.5"
         springOptions={{
           bounce: 0,
         }}

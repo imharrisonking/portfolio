@@ -10,7 +10,7 @@ export function TypographyH1({ children, className }: TypographyProps) {
   return (
     <h1
       className={cn(
-        'scroll-m-20 font-mono text-base font-semibold tracking-wider text-balance text-blue-600 uppercase dark:text-orange-400',
+        'dark:text-accent text-accent scroll-m-20 font-mono text-base font-semibold tracking-wider text-balance uppercase',
         className,
       )}
     >
@@ -23,7 +23,7 @@ export function TypographyH2({ children, className }: TypographyProps) {
   return (
     <h2
       className={cn(
-        'mb-4 scroll-m-20 font-mono text-base font-semibold tracking-wider text-balance text-gray-800 uppercase first:mt-0 dark:text-white',
+        'text-foreground mb-4 scroll-m-20 font-mono text-base font-semibold tracking-wider text-balance uppercase first:mt-0 dark:text-white',
         className,
       )}
     >
@@ -60,12 +60,7 @@ export function TypographyH4({ children, className }: TypographyProps) {
 
 export function TypographyP({ children, className }: TypographyProps) {
   return (
-    <p
-      className={cn(
-        'text-sm text-gray-500 dark:text-gray-400 [&:not(:first-child)]:mt-6',
-        className,
-      )}
-    >
+    <p className={cn('text-sm [&:not(:first-child)]:mt-6', className)}>
       {children}
     </p>
   )
@@ -81,7 +76,7 @@ export function TypographyBlockquote({ children, className }: TypographyProps) {
       const lines = children.split('\n').filter((line) => line.trim())
       return lines.map((line, index) => (
         <div key={index} className="leading-none">
-          <span className="text-gray-400 dark:text-gray-500">░ </span>
+          <span className="dark: text-gray-400">░ </span>
           {line.trim()}
         </div>
       ))
@@ -90,7 +85,7 @@ export function TypographyBlockquote({ children, className }: TypographyProps) {
     // For other types of children, wrap in div with prefix
     return (
       <div className="leading-none">
-        <span className="text-gray-400 dark:text-gray-500">░ </span>
+        <span className="dark: text-gray-400">░ </span>
         {children}
       </div>
     )
@@ -99,7 +94,7 @@ export function TypographyBlockquote({ children, className }: TypographyProps) {
   return (
     <blockquote
       className={cn(
-        'mt-6 font-mono text-[10px] tracking-widest text-gray-600 uppercase dark:text-gray-400',
+        'mt-6 font-mono text-[10px] tracking-widest text-gray-600 uppercase',
         className,
       )}
     >
@@ -129,7 +124,5 @@ export function TypographySmall({ children, className }: TypographyProps) {
 }
 
 export function TypographyMuted({ children, className }: TypographyProps) {
-  return (
-    <p className={cn('text-muted-foreground text-sm', className)}>{children}</p>
-  )
+  return <p className={cn('text-muted text-sm', className)}>{children}</p>
 }

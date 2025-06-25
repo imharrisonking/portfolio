@@ -7,7 +7,11 @@ import {
   useSpring,
 } from 'motion/react'
 import { WORK_EXPERIENCE } from '@/app/data'
-import { TypographyH2 } from '../layout/typography'
+import {
+  TypographyH2,
+  TypographyMuted,
+  TypographyP,
+} from '../layout/typography'
 
 const VARIANTS_SECTION = {
   hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
@@ -83,19 +87,19 @@ export function WorkExperienceSection() {
               onMouseEnter={() => setHoveredJob(job.id)}
               onMouseLeave={() => setHoveredJob(null)}
             >
-              <div className="relative overflow-hidden rounded-md p-4 ring-1 ring-gray-200/50 transition-all duration-200 ring-inset group-hover:ring-blue-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/texture-blue.svg')] before:bg-repeat before:opacity-0 before:transition-opacity before:duration-200 group-hover:before:opacity-100 dark:bg-neutral-800/40 dark:ring-neutral-800/50 dark:group-hover:ring-orange-400 dark:before:bg-[url('/texture-orange.svg')]">
+              <div className="group-hover:ring-accent ring-border/50 relative overflow-hidden rounded-md p-4 ring-1 transition-all duration-200 ring-inset before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/texture-blue.svg')] before:bg-repeat before:opacity-0 before:transition-opacity before:duration-200 group-hover:before:opacity-100 dark:before:bg-[url('/texture-orange.svg')]">
                 <div className="relative flex w-full flex-row justify-between">
                   <div>
-                    <h4 className="font-normal group-hover:text-blue-600 dark:text-gray-100 dark:group-hover:text-orange-400">
+                    <h4 className="group-hover:text-accent font-normal">
                       {job.title}
                     </h4>
-                    <p className="text-sm text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-orange-400">
+                    <TypographyMuted className="group-hover:text-accent">
                       {job.company}
-                    </p>
+                    </TypographyMuted>
                   </div>
-                  <p className="text-sm text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-orange-400">
+                  <TypographyMuted className="group-hover:text-accent">
                     {job.start} - {job.end}
-                  </p>
+                  </TypographyMuted>
                 </div>
               </div>
             </a>

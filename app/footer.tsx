@@ -34,11 +34,11 @@ function ThemeSwitch() {
   if (!mounted) {
     // Return a placeholder with the same structure to avoid hydration mismatch
     return (
-      <div className="inline-flex gap-0.5 rounded-lg bg-gray-100 p-0.5 dark:bg-neutral-700">
+      <div className="bg-muted inline-flex gap-0.5 rounded-lg p-0.5">
         {THEMES_OPTIONS.map((theme) => (
           <button
             key={theme.id}
-            className="inline-flex h-7 w-7 items-center justify-center text-gray-500 transition-colors duration-100 focus-visible:outline-2 data-[checked=true]:text-gray-950 dark:text-gray-400 dark:data-[checked=true]:text-gray-50"
+            className="data-[checked=true]:text-accent inline-flex h-7 w-7 items-center justify-center transition-colors duration-100 focus-visible:outline-2"
             type="button"
             aria-label={`Switch to ${theme.label} theme`}
             disabled
@@ -52,7 +52,7 @@ function ThemeSwitch() {
 
   return (
     <AnimatedBackground
-      className="pointer-events-none rounded-lg bg-gray-100 dark:bg-neutral-700"
+      className="bg-accent/5 pointer-events-none rounded-lg"
       defaultValue={theme || 'light'}
       transition={{
         type: 'spring',
@@ -68,7 +68,7 @@ function ThemeSwitch() {
         return (
           <button
             key={theme.id}
-            className="inline-flex h-7 w-7 items-center justify-center text-gray-500 transition-colors duration-100 focus-visible:outline-2 data-[checked=true]:text-gray-950 dark:text-gray-400 dark:data-[checked=true]:text-gray-50"
+            className="data-[checked=true]:text-accent inline-flex h-7 w-7 items-center justify-center transition-colors duration-100 focus-visible:outline-2"
             type="button"
             aria-label={`Switch to ${theme.label} theme`}
             data-id={theme.id}
@@ -89,11 +89,11 @@ function FooterText() {
   }, [])
 
   if (!mounted) {
-    return <span className="text-xs text-gray-500">© 2025 Harrison King.</span>
+    return <span className="text-xs">© 2025 Harrison King.</span>
   }
 
   return (
-    <TextLoop className="text-xs text-gray-500">
+    <TextLoop className="text-xs">
       <span>© 2025 Harrison King.</span>
       <span>Made with care.</span>
     </TextLoop>

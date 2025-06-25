@@ -3,7 +3,11 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import { BLOG_POSTS } from '@/app/data'
-import { TypographyH2, TypographyH3 } from '../layout/typography'
+import {
+  TypographyH2,
+  TypographyH3,
+  TypographyMuted,
+} from '../layout/typography'
 
 const VARIANTS_SECTION = {
   hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
@@ -21,7 +25,7 @@ export function BlogSection() {
       <div className="flex flex-col space-y-0">
         <AnimatedBackground
           enableHover
-          className="h-full w-full rounded-lg bg-blue-600/5 dark:bg-orange-900/10"
+          className="bg-accent/5 h-full w-full rounded-lg"
           transition={{
             type: 'spring',
             bounce: 0,
@@ -36,12 +40,12 @@ export function BlogSection() {
               data-id={post.uid}
             >
               <div className="flex flex-col space-y-1">
-                <h4 className="font-normal group-hover:text-blue-500 dark:text-gray-100 dark:group-hover:text-orange-400">
+                <h4 className="dark:group-hover:text-accent font-normal group-hover:text-blue-500 dark:text-gray-100">
                   {post.title}
                 </h4>
-                <p className="text-sm text-gray-500 group-hover:text-gray-950 dark:text-gray-400 dark:group-hover:text-gray-100">
+                <TypographyMuted className="group-hover:text-foreground">
                   {post.description}
-                </p>
+                </TypographyMuted>
               </div>
             </Link>
           ))}
