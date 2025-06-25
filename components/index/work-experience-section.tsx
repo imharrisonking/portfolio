@@ -61,7 +61,7 @@ export function WorkExperienceSection() {
             <img
               src={hoveredJobData.image}
               alt={`${hoveredJobData.company} office`}
-              className="h-32 w-32 object-cover shadow-2xl aspect-square"
+              className="aspect-square h-32 w-32 object-cover shadow-2xl"
             />
           </motion.div>
         )}
@@ -83,20 +83,17 @@ export function WorkExperienceSection() {
               onMouseEnter={() => setHoveredJob(job.id)}
               onMouseLeave={() => setHoveredJob(null)}
             >
-              <div className="relative overflow-hidden rounded-2xl bg-gray-50/40 p-4 ring-1 ring-gray-200/50 transition-all duration-200 ring-inset group-hover:ring-blue-600 dark:bg-neutral-800/40 dark:ring-neutral-800/50 dark:group-hover:ring-orange-400">
+              <div className="relative overflow-hidden rounded-md p-4 ring-1 ring-gray-200/50 transition-all duration-200 ring-inset group-hover:ring-blue-600 before:pointer-events-none before:absolute before:inset-0 before:bg-[url('/texture-blue.svg')] before:bg-repeat before:opacity-0 before:transition-opacity before:duration-200 group-hover:before:opacity-100 dark:bg-neutral-800/40 dark:ring-neutral-800/50 dark:group-hover:ring-orange-400 dark:before:bg-[url('/texture-orange.svg')]">
                 <div className="relative flex w-full flex-row justify-between">
                   <div>
                     <h4 className="font-normal group-hover:text-blue-600 dark:text-gray-100 dark:group-hover:text-orange-400">
                       {job.title}
-                      <span className="ml-1 inline-block rotate-315 text-sm transition-transform duration-200 group-hover:-translate-y-1 group-hover:translate-x-1">
-                        →
-                      </span>
                     </h4>
-                    <p className="text-sm text-gray-500 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white">
+                    <p className="text-sm text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-orange-400">
                       {job.company}
                     </p>
                   </div>
-                  <p className="text-sm text-gray-500 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white">
+                  <p className="text-sm text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-orange-400">
                     {job.start} - {job.end}
                   </p>
                 </div>
