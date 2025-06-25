@@ -29,8 +29,8 @@ export function WorkExperienceSection() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      x.set(e.clientX - 72)
-      y.set(e.clientY - 48)
+      x.set(e.clientX - 60) // Half of w-32
+      y.set(e.clientY - 60) // Half of h-32
     }
 
     if (hoveredJob) {
@@ -62,7 +62,7 @@ export function WorkExperienceSection() {
             <img
               src={hoveredJobData.image}
               alt={`${hoveredJobData.company} office`}
-              className="h-24 w-36 object-cover shadow-2xl"
+              className="h-32 w-32 object-cover shadow-2xl aspect-square"
             />
           </motion.div>
         )}

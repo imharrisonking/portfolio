@@ -1,4 +1,3 @@
-'use client'
 import { motion } from 'motion/react'
 import { Magnetic } from '@/components/ui/magnetic'
 import { EMAIL, SOCIAL_LINKS } from '@/app/data'
@@ -24,7 +23,7 @@ function MagneticSocialLink({
     <Magnetic springOptions={{ bounce: 0 }} intensity={0.3}>
       <a
         href={link}
-        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-gray-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-blue-600 hover:text-gray-50 dark:bg-neutral-700 dark:text-gray-100 dark:hover:bg-orange-400"
+        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-gray-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:cursor-pointer hover:bg-blue-600 hover:text-gray-50 dark:bg-neutral-700 dark:text-gray-100 dark:hover:bg-orange-400"
       >
         {children}
         <svg

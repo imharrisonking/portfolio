@@ -37,7 +37,7 @@ export function ProjectsSection() {
             <div className="px-1">
               <h3 className="font-base font-normal dark:text-gray-100">
                 {project.name}
-                <span className="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1">
+                <span className="ml-1 inline-block rotate-315 text-sm transition-transform duration-200 group-hover:-translate-y-1 group-hover:translate-x-1">
                   →
                 </span>
               </h3>
