@@ -1,74 +1,118 @@
-export function TypographyH1() {
+import { ReactNode } from 'react'
+import { cn } from '@/lib/utils'
+
+interface TypographyProps {
+  children: ReactNode
+  className?: string
+}
+
+export function TypographyH1({ children, className }: TypographyProps) {
   return (
-    <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
-      Taxing Laughter: The Joke Tax Chronicles
+    <h1
+      className={cn(
+        'scroll-m-20 font-mono text-lg font-semibold tracking-wider text-balance text-blue-600 uppercase dark:text-blue-400',
+        className,
+      )}
+    >
+      {children}
     </h1>
   )
 }
 
-export function TypographyH2() {
+export function TypographyH2({ children, className }: TypographyProps) {
   return (
-    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-      The People of the Kingdom
+    <h2
+      className={cn(
+        'mb-4 scroll-m-20 font-mono text-lg font-semibold tracking-wider text-balance text-gray-800 uppercase first:mt-0',
+        className,
+      )}
+    >
+      {children}
     </h2>
   )
 }
 
-export function TypographyH3() {
+export function TypographyH3({ children, className }: TypographyProps) {
   return (
-    <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-      The Joke Tax
+    <h3
+      className={cn(
+        'scroll-m-20 text-2xl font-semibold tracking-tight',
+        className,
+      )}
+    >
+      {children}
     </h3>
   )
 }
 
-export function TypographyH4() {
+export function TypographyH4({ children, className }: TypographyProps) {
   return (
-    <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-      People stopped telling jokes
+    <h4
+      className={cn(
+        'scroll-m-20 text-xl font-semibold tracking-tight',
+        className,
+      )}
+    >
+      {children}
     </h4>
   )
 }
 
-export function TypographyP() {
+export function TypographyP({ children, className }: TypographyProps) {
   return (
-    <p className="leading-7 [&:not(:first-child)]:mt-6">
-      The king, seeing how much happier his subjects were, realized the error of
-      his ways and repealed the joke tax.
+    <p
+      className={cn(
+        'text-sm leading-7 text-gray-500 dark:text-gray-400 [&:not(:first-child)]:mt-6',
+        className,
+      )}
+    >
+      {children}
     </p>
   )
 }
 
-export function TypographyBlockquote() {
+export function TypographyBlockquote({ children, className }: TypographyProps) {
   return (
-    <blockquote className="mt-6 border-l-2 pl-6 italic">
-      &quot;After all,&quot; he said, &quot;everyone enjoys a good joke, so
-      it&apos;s only fair that they should pay for the privilege.&quot;
+    <blockquote
+      className={cn(
+        'mt-6 font-mono text-xs tracking-wider text-gray-600 uppercase dark:text-gray-400',
+        className,
+      )}
+    >
+      <div className="leading-none">
+        <span className="text-gray-400 dark:text-gray-500">░ </span>
+        Building distributed quantitative forecasting models professionally.
+      </div>
+      <div className="leading-none">
+        <span className="text-gray-400 dark:text-gray-500">░ </span>
+        Creating scalable user-centric products personally.
+      </div>
     </blockquote>
   )
 }
 
-export function TypographyLead() {
+export function TypographyLead({ children, className }: TypographyProps) {
   return (
-    <p className="text-muted-foreground text-xl">
-      A modal dialog that interrupts the user with important content and expects
-      a response.
-    </p>
+    <p className={cn('text-muted-foreground text-xl', className)}>{children}</p>
   )
 }
 
-export function TypographyLarge() {
-  return <div className="text-lg font-semibold">Are you absolutely sure?</div>
-}
-
-export function TypographySmall() {
+export function TypographyLarge({ children, className }: TypographyProps) {
   return (
-    <small className="text-sm leading-none font-medium">Email address</small>
+    <div className={cn('text-lg font-semibold', className)}>{children}</div>
   )
 }
 
-export function TypographyMuted() {
+export function TypographySmall({ children, className }: TypographyProps) {
   return (
-    <p className="text-muted-foreground text-sm">Enter your email address.</p>
+    <small className={cn('text-sm leading-none font-medium', className)}>
+      {children}
+    </small>
+  )
+}
+
+export function TypographyMuted({ children, className }: TypographyProps) {
+  return (
+    <p className={cn('text-muted-foreground text-sm', className)}>{children}</p>
   )
 }

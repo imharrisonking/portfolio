@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
     name: 'Propagate',
     description:
       'A platform to build and deploy your own fully branded and native fitness app.',
-    link: 'https://pro.motion-primitives.com/',
+    link: 'https://propagate.so',
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
     id: 'project1',
@@ -41,9 +41,9 @@ export const PROJECTS: Project[] = [
     name: 'ELFO',
     description:
       'Stochastic forecasting model of the hourly GB power market using distributed computing.',
-    link: 'https://motion-primitives.com/',
+    link: 'https://www.lowcarboncontracts.uk/resources/guidance-and-publications/low-carbon-contracts-lccc-levy-forecasting-methodology/',
     video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+      'https://res.cloudinary.com/dejm6tfy8/video/upload/f_auto:video,q_auto/cik2qfu1vk50v8kfylgp',
     id: 'project2',
   },
 ]

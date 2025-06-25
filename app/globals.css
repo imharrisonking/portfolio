@@ -2,9 +2,10 @@
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --font-sans: var(--font-geist), --font-mono: var(--font-departure-mono);
-}
+/* @theme {
+  --font-sans: var(--font-imb-plex-serif);
+  --font-mono: var(--font-departure-mono);
+} */
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,

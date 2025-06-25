@@ -1,0 +1,5 @@
+export { HeroSection } from './hero-section'
+export { ProjectsSection } from './projects-section'
+export { WorkExperienceSection } from './work-experience-section'
+export { BlogSection } from './blog-section'
+export { ConnectSection } from './connect-section'

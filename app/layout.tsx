@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist } from 'next/font/google'
+import { Geist, IBM_Plex_Serif, Newsreader } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
 import { Header } from './header'
@@ -30,6 +30,12 @@ const geist = Geist({
   subsets: ['latin'],
 })
 
+const imbPlexSerif = IBM_Plex_Serif({
+  variable: '--font-sans',
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+})
+
 const departureMono = localFont({
   src: '../fonts/DepartureMono-Regular.woff2',
   variable: '--font-mono',
@@ -44,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${departureMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${geist.variable} ${imbPlexSerif.variable} ${departureMono.variable} bg-white tracking-tight antialiased dark:bg-gray-950`}
       >
         <ThemeProvider
           enableSystem={true}
