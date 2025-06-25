@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export function Header() {
   return (
-    <header className="mb-8 flex items-center justify-between">
+    <header className="mb-6 flex items-center justify-between">
       <div>
         <TypographyH1>
           <Link href="/">Harrison King</Link>

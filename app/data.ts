@@ -55,9 +55,10 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Founder',
     start: 'Sep 2024',
     end: 'Present',
-    link: 'https://propagate.com',
+    link: 'https://propagate.so',
     id: 'work1',
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+    image:
+      'https://res.cloudinary.com/dejm6tfy8/image/upload/f_auto,q_auto/gefyp7i9xvf0ngq97e70',
   },
   {
     company: 'Low Carbon Contracts Company',
@@ -66,7 +67,8 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     end: 'Present',
     link: 'https://www.lowcarboncontracts.uk',
     id: 'work2',
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=300&fit=crop',
+    image:
+      'https://res.cloudinary.com/dejm6tfy8/image/upload/f_auto,q_auto/skwox9yvnshltqgdxmf5',
   },
   {
     company: 'Low Carbon Contracts Company',
@@ -75,7 +77,8 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     end: 'Sep 2024',
     link: 'https://www.lowcarboncontracts.uk',
     id: 'work3',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop',
+    image:
+      'https://res.cloudinary.com/dejm6tfy8/image/upload/f_auto,q_auto/skwox9yvnshltqgdxmf5',
   },
   {
     company: 'Arup',
@@ -84,7 +87,8 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     end: 'Nov 2022',
     link: 'https://www.arup.com',
     id: 'work4',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop',
+    image:
+      'https://media.licdn.com/dms/image/v2/D4E0BAQGJio-1N-Cssg/company-logo_200_200/company-logo_200_200/0/1686582688780/arup_logo?e=1756339200&v=beta&t=t_hN9M9H1bSQdkpEEDel0TJsaMUwFx9RmBJ7ycrKAzg',
   },
 ]
 
