@@ -31,8 +31,8 @@ export function TextScramble({
   const [isScrambling, setIsScrambling] = useState(false)
   const [hasInitialized, setHasInitialized] = useState(false)
   const [currentText, setCurrentText] = useState(children)
-  const frameRef = useRef<number>()
-  const resolveRef = useRef<() => void>()
+  const frameRef = useRef<number | undefined>(undefined)
+  const resolveRef = useRef<(() => void) | undefined>(undefined)
 
   const scramble = (text: string) => {
     return new Promise<void>((resolve) => {
@@ -108,7 +108,7 @@ export function TextScramble({
   // Cleanup
   useEffect(() => {
     return () => {
-      if (frameRef.current) {
+      if (frameRef.current !== undefined) {
         cancelAnimationFrame(frameRef.current)
       }
       if (resolveRef.current) {
@@ -118,7 +118,7 @@ export function TextScramble({
   }, [])
 
   return (
-    <Component 
+    <Component
       className={className}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

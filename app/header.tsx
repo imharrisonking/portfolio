@@ -1,6 +1,5 @@
 'use client'
 import { TypographyH1 } from '@/components/layout/typography'
-import { TextEffect } from '@/components/ui/text-effect'
 import { TextScramble } from '@/components/ui/text-scramble'
 import Link from 'next/link'
 

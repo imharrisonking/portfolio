@@ -23,6 +23,22 @@ export const metadata: Metadata = {
   },
   description: `Building distributed quantitative forecasting models professionally.
   Creating scalable user-centric products personally.`,
+  icons: {
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        type: 'image/x-icon',
+        rel: 'icon',
+        url: './favicon-light.ico',
+      },
+      {
+        media: '(prefers-color-scheme: dark)',
+        type: 'image/x-icon',
+        rel: 'icon',
+        url: './favicon-dark.ico',
+      },
+    ],
+  },
 }
 
 const geist = Geist({
