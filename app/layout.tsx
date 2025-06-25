@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, IBM_Plex_Serif, Newsreader } from 'next/font/google'
+import { IBM_Plex_Serif } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
 import { Header } from './header'
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: 'Harrison King',
+    default: 'Harrison King | Quant Developer & Founder',
     template: '%s | Harrison King',
   },
   description: `Building distributed quantitative forecasting models professionally.
@@ -26,25 +26,18 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
+        type: 'image/ico',
         media: '(prefers-color-scheme: light)',
-        type: 'image/x-icon',
-        rel: 'icon',
-        url: './favicon-light.ico',
+        url: '/icon-light.ico',
       },
       {
+        type: 'image/ico',
         media: '(prefers-color-scheme: dark)',
-        type: 'image/x-icon',
-        rel: 'icon',
-        url: './favicon-dark.ico',
+        url: '/icon-dark.ico',
       },
     ],
   },
 }
-
-const geist = Geist({
-  variable: '--font-geist',
-  subsets: ['latin'],
-})
 
 const imbPlexSerif = IBM_Plex_Serif({
   variable: '--font-sans',
@@ -66,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${imbPlexSerif.variable} ${departureMono.variable} bg-background text-foreground tracking-tight antialiased`}
+        className={`${imbPlexSerif.variable} ${departureMono.variable} bg-background text-foreground tracking-tight antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider
