@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:is(.dark *));
 
@@ -136,12 +136,5 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-}
-
-@layer utilities {
-  .text-sm {
-    font-size: 0.875rem !important;
-    line-height: 1.6 !important;
   }
 }

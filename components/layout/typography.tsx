@@ -62,7 +62,7 @@ export function TypographyP({ children, className }: TypographyProps) {
   return (
     <p
       className={cn(
-        'text-sm leading-7 text-gray-500 dark:text-gray-400 [&:not(:first-child)]:mt-6',
+        'text-sm text-gray-500 dark:text-gray-400 [&:not(:first-child)]:mt-6',
         className,
       )}
     >
