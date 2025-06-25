@@ -10,7 +10,7 @@ export function TypographyH1({ children, className }: TypographyProps) {
   return (
     <h1
       className={cn(
-        'scroll-m-20 font-mono text-2xl font-semibold tracking-wider text-balance text-blue-600 uppercase dark:text-blue-400',
+        'scroll-m-20 font-mono text-base font-semibold tracking-wider text-balance text-blue-600 uppercase dark:text-orange-400',
         className,
       )}
     >

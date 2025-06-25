@@ -24,7 +24,7 @@ function MagneticSocialLink({
     <Magnetic springOptions={{ bounce: 0 }} intensity={0.3}>
       <a
         href={link}
-        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-gray-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-blue-600 hover:text-gray-50 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-blue-700"
+        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-gray-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-blue-600 hover:text-gray-50 dark:bg-neutral-700 dark:text-gray-100 dark:hover:bg-orange-400"
       >
         {children}
         <svg
@@ -53,7 +53,10 @@ export function ConnectSection() {
       <TypographyH2>Connect</TypographyH2>
       <p className="mb-5 text-gray-600 dark:text-gray-400">
         Feel free to contact me at{' '}
-        <a className="underline dark:text-gray-300" href={`mailto:${EMAIL}`}>
+        <a
+          className="underline hover:text-blue-600 dark:text-gray-300 dark:hover:text-orange-400"
+          href={`mailto:${EMAIL}`}
+        >
           {EMAIL}
         </a>
       </p>

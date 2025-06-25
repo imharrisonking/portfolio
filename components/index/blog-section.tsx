@@ -21,7 +21,7 @@ export function BlogSection() {
       <div className="flex flex-col space-y-0">
         <AnimatedBackground
           enableHover
-          className="h-full w-full rounded-lg bg-blue-50 dark:bg-blue-900/80"
+          className="h-full w-full rounded-lg bg-blue-600/5 dark:bg-orange-900/10"
           transition={{
             type: 'spring',
             bounce: 0,
@@ -31,13 +31,15 @@ export function BlogSection() {
           {BLOG_POSTS.map((post) => (
             <Link
               key={post.uid}
-              className="-mx-3 rounded-xl px-3 py-3"
+              className="group -mx-3 rounded-xl px-3 py-3"
               href={post.link}
               data-id={post.uid}
             >
               <div className="flex flex-col space-y-1">
-                <h4 className="font-normal dark:text-gray-100">{post.title}</h4>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <h4 className="font-normal group-hover:text-blue-500 dark:text-gray-100 dark:group-hover:text-orange-400">
+                  {post.title}
+                </h4>
+                <p className="text-sm text-gray-500 group-hover:text-gray-950 dark:text-gray-400 dark:group-hover:text-gray-100">
                   {post.description}
                 </p>
               </div>

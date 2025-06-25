@@ -25,7 +25,7 @@ export function ProjectsSection() {
             rel="noopener noreferrer"
             className="group block space-y-2"
           >
-            <div className="relative overflow-hidden rounded-2xl bg-gray-50/40 p-1 ring-1 ring-gray-200/50 ring-inset transition-all duration-200 group-hover:ring-gray-300 dark:bg-gray-950/40 dark:ring-gray-800/50 dark:group-hover:ring-gray-700">
+            <div className="relative overflow-hidden rounded-2xl bg-gray-50/40 p-1 ring-1 ring-gray-200/50 transition-all duration-200 ring-inset group-hover:ring-gray-300 dark:bg-neutral-800/40 dark:ring-neutral-800/50 dark:group-hover:ring-gray-700">
               <video
                 src={project.video}
                 autoPlay
@@ -37,7 +37,9 @@ export function ProjectsSection() {
             <div className="px-1">
               <h3 className="font-base font-normal dark:text-gray-100">
                 {project.name}
-                <span className="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+                <span className="ml-1 inline-block transition-transform duration-200 group-hover:translate-x-1">
+                  →
+                </span>
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 {project.description}

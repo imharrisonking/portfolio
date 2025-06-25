@@ -14,7 +14,7 @@ export function Header() {
           as="p"
           preset="fade"
           per="char"
-          className="text-gray-800 dark:text-gray-500"
+          className="text-base text-gray-500 dark:text-gray-400"
           delay={0.5}
         >
           Quant Developer | Founder

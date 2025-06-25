@@ -34,7 +34,7 @@ function ThemeSwitch() {
   if (!mounted) {
     // Return a placeholder with the same structure to avoid hydration mismatch
     return (
-      <div className="inline-flex gap-0.5 rounded-lg bg-gray-100 p-0.5 dark:bg-gray-800">
+      <div className="inline-flex gap-0.5 rounded-lg bg-gray-100 p-0.5 dark:bg-neutral-700">
         {THEMES_OPTIONS.map((theme) => (
           <button
             key={theme.id}
@@ -52,7 +52,7 @@ function ThemeSwitch() {
 
   return (
     <AnimatedBackground
-      className="pointer-events-none rounded-lg bg-gray-100 dark:bg-gray-800"
+      className="pointer-events-none rounded-lg bg-gray-100 dark:bg-neutral-700"
       defaultValue={theme || 'light'}
       transition={{
         type: 'spring',

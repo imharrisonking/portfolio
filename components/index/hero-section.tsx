@@ -1,6 +1,9 @@
 'use client'
 import { motion } from 'motion/react'
-import { TypographyBlockquote } from '@/components/layout/typography'
+import {
+  TypographyBlockquote,
+  TypographyP,
+} from '@/components/layout/typography'
 
 const VARIANTS_SECTION = {
   hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
@@ -14,12 +17,11 @@ const TRANSITION_SECTION = {
 export function HeroSection() {
   return (
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <div className="flex-1">
-        <TypographyBlockquote>
-          {`Building distributed quantitative forecasting models professionally.
-Creating scalable user-centric products personally.`}
-        </TypographyBlockquote>
-      </div>
+      <TypographyP className="text-base text-gray-900 dark:text-white">
+        Building distributed quantitative forecasting models professionally.
+        <br />
+        Creating scalable user-centric products personally.
+      </TypographyP>
     </motion.section>
   )
 }
