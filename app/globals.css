@@ -66,7 +66,7 @@
   --sh-entity: #e0af68;
   --radius: 0.625rem;
   --background: var(--color-stone-50);
-  --foreground: var(--color-stone-700);
+  --foreground: var(--color-stone-800);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -101,8 +101,8 @@
 }
 
 .dark {
-  --background: var(--color-neutral-800);
-  --foreground: var(--color-stone-200);
+  --background: oklch(25.2% 1.5265566588595902e-16 0);
+  --foreground: var(--color-stone-300);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.269 0 0);
@@ -114,7 +114,7 @@
   --muted: var(--color-stone-400);
   --muted-foreground: oklch(0.708 0 0);
   --accent-low: var(--color-orange-300);
-  --accent: var(--color-orange-400);
+  --accent: oklch(78.79% 0.16050607580773923 64.44090439344501);
   --accent-high: var(--color-orange-900);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);

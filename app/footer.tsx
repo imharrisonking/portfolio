@@ -95,14 +95,14 @@ function FooterText() {
   return (
     <TextLoop className="text-xs">
       <span>© 2025 Harrison King.</span>
-      <span>Made with care.</span>
+      <span>Made by me.</span>
     </TextLoop>
   )
 }
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-gray-100 px-0 py-4 dark:border-gray-800">
+    <footer className="border-border mt-24 border-t px-0 py-4">
       <div className="flex items-center justify-between">
         <a href="https://github.com/ibelick/nim" target="_blank">
           <FooterText />

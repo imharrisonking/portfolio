@@ -1,24 +1,23 @@
 'use client'
 import { TypographyH1 } from '@/components/layout/typography'
 import { TextEffect } from '@/components/ui/text-effect'
+import { TextScramble } from '@/components/ui/text-scramble'
 import Link from 'next/link'
 
 export function Header() {
   return (
-    <header className="mb-6 flex items-center justify-between">
+    <header className="mb-7 flex items-center justify-between">
       <div>
-        <TypographyH1>
-          <Link href="/">Harrison King</Link>
-        </TypographyH1>
-        <TextEffect
-          as="p"
-          preset="fade"
-          per="char"
-          className="text-sm"
-          delay={0.5}
-        >
-          Quant Developer | Founder
-        </TextEffect>
+        <Link href="/" className="inline-block">
+          <TypographyH1 className="cursor-pointer">
+            <TextScramble speed={0.5} scrambleOnHover="RETURN HOME">
+              Harrison King
+            </TextScramble>
+          </TypographyH1>
+        </Link>
+        <TextScramble as="p" className="text-sm" speed={0.01} characters=".">
+          Quant Developer & Founder
+        </TextScramble>
       </div>
     </header>
   )
