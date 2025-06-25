@@ -2,7 +2,7 @@
 import { motion } from 'motion/react'
 import { Magnetic } from '@/components/ui/magnetic'
 import { EMAIL, SOCIAL_LINKS } from '@/app/data'
-import { TypographyH2, TypographyH3 } from '../layout/typography'
+import { TypographyH2 } from '../layout/typography'
 
 const VARIANTS_SECTION = {
   hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
@@ -24,7 +24,7 @@ function MagneticSocialLink({
     <Magnetic springOptions={{ bounce: 0 }} intensity={0.3}>
       <a
         href={link}
-        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-gray-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-gray-950 hover:text-gray-50 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-gray-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-blue-600 hover:text-gray-50 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-blue-700"
       >
         {children}
         <svg

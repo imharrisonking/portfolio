@@ -10,7 +10,7 @@ export function TypographyH1({ children, className }: TypographyProps) {
   return (
     <h1
       className={cn(
-        'scroll-m-20 font-mono text-lg font-semibold tracking-wider text-balance text-blue-600 uppercase dark:text-blue-400',
+        'scroll-m-20 font-mono text-2xl font-semibold tracking-wider text-balance text-blue-600 uppercase dark:text-blue-400',
         className,
       )}
     >
@@ -23,7 +23,7 @@ export function TypographyH2({ children, className }: TypographyProps) {
   return (
     <h2
       className={cn(
-        'mb-4 scroll-m-20 font-mono text-lg font-semibold tracking-wider text-balance text-gray-800 uppercase first:mt-0',
+        'mb-4 scroll-m-20 font-mono text-base font-semibold tracking-wider text-balance text-gray-800 uppercase first:mt-0 dark:text-white',
         className,
       )}
     >
@@ -72,21 +72,38 @@ export function TypographyP({ children, className }: TypographyProps) {
 }
 
 export function TypographyBlockquote({ children, className }: TypographyProps) {
+  // Process children to handle both string and React elements
+  const processContent = () => {
+    if (!children) return null
+
+    // If children is a string, split by newlines
+    if (typeof children === 'string') {
+      const lines = children.split('\n').filter((line) => line.trim())
+      return lines.map((line, index) => (
+        <div key={index} className="leading-none">
+          <span className="text-gray-400 dark:text-gray-500">░ </span>
+          {line.trim()}
+        </div>
+      ))
+    }
+
+    // For other types of children, wrap in div with prefix
+    return (
+      <div className="leading-none">
+        <span className="text-gray-400 dark:text-gray-500">░ </span>
+        {children}
+      </div>
+    )
+  }
+
   return (
     <blockquote
       className={cn(
-        'mt-6 font-mono text-xs tracking-wider text-gray-600 uppercase dark:text-gray-400',
+        'mt-6 font-mono text-[10px] tracking-widest text-gray-600 uppercase dark:text-gray-400',
         className,
       )}
     >
-      <div className="leading-none">
-        <span className="text-gray-400 dark:text-gray-500">░ </span>
-        Building distributed quantitative forecasting models professionally.
-      </div>
-      <div className="leading-none">
-        <span className="text-gray-400 dark:text-gray-500">░ </span>
-        Creating scalable user-centric products personally.
-      </div>
+      {processContent()}
     </blockquote>
   )
 }

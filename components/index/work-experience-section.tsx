@@ -20,17 +20,17 @@ export function WorkExperienceSection() {
       <div className="flex flex-col space-y-2">
         {WORK_EXPERIENCE.map((job) => (
           <a
-            className="relative overflow-hidden rounded-2xl bg-gray-300/20 p-[1px] dark:bg-gray-600/30"
+            className="relative overflow-hidden rounded-2xl"
             href={job.link}
             target="_blank"
             rel="noopener noreferrer"
             key={job.id}
           >
             <Spotlight
-              className="from-blue-600 via-blue-600 to-blue-600 blur-2xl dark:from-blue-200 dark:via-blue-300 dark:to-blue-100"
+              className="from-blue-600 via-blue-600 to-blue-600 blur-3xl saturate-200 dark:from-blue-200 dark:via-blue-300 dark:to-blue-100"
               size={64}
             />
-            <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-gray-950">
+            <div className="relative h-full w-full rounded-[15px] bg-transparent p-4 dark:bg-transparent">
               <div className="relative flex w-full flex-row justify-between">
                 <div>
                   <h4 className="font-normal dark:text-gray-100">

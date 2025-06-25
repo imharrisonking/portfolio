@@ -1,4 +1,5 @@
 'use client'
+import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import {
   HeroSection,
@@ -19,12 +20,18 @@ const VARIANTS_CONTAINER = {
 }
 
 export default function Personal() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <motion.main
       className="space-y-24"
       variants={VARIANTS_CONTAINER}
-      initial="hidden"
-      animate="visible"
+      initial={false}
+      animate={mounted ? "visible" : "hidden"}
     >
       <HeroSection />
       <ProjectsSection />

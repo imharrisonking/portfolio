@@ -1,3 +1,4 @@
+'use client'
 import { motion } from 'motion/react'
 import { TypographyBlockquote } from '@/components/layout/typography'
 
@@ -14,7 +15,10 @@ export function HeroSection() {
   return (
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
       <div className="flex-1">
-        <TypographyBlockquote />
+        <TypographyBlockquote>
+          {`Building distributed quantitative forecasting models professionally.
+Creating scalable user-centric products personally.`}
+        </TypographyBlockquote>
       </div>
     </motion.section>
   )

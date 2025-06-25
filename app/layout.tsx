@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${imbPlexSerif.variable} ${departureMono.variable} bg-white tracking-tight antialiased dark:bg-gray-950`}
+        className={`${geist.variable} ${imbPlexSerif.variable} ${departureMono.variable} bg-white tracking-tight antialiased dark:bg-gray-900`}
       >
         <ThemeProvider
           enableSystem={true}
