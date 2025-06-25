@@ -25,6 +25,7 @@ Note: No test suite is configured. The package.json has a typo in the name field
 ## Architecture Overview
 
 ### Tech Stack
+
 - **Framework**: Next.js 15.1.1 with App Router
 - **UI**: React 19, Tailwind CSS v4 (alpha), Motion-Primitives
 - **Language**: TypeScript with strict mode
@@ -32,9 +33,11 @@ Note: No test suite is configured. The package.json has a typo in the name field
 - **Animation**: Motion library (v11) with pre-built components
 
 ### Key Files for Data Management
+
 - `app/data.ts`: Central data file containing all portfolio content (projects, work experience, blog posts, social links). This is the primary file to modify when customizing the portfolio content.
 
 ### Project Structure
+
 - `/app` - Next.js App Router pages and components
   - `/blog/[slug]` - Individual blog post pages
   - `/blog/[slug]/post.mdx` - MDX content for each blog post
@@ -43,18 +46,21 @@ Note: No test suite is configured. The package.json has a typo in the name field
 - `/hooks` - Custom React hooks
 
 ### Styling Approach
+
 - Tailwind CSS v4 with PostCSS configuration
 - Global styles in `app/globals.css`
 - Component styling uses `cn()` utility (lib/utils.ts) for conditional classes
 - Dark mode support via next-themes
 
 ### Blog System
+
 - Blog posts are MDX files stored in `app/blog/[slug]/post.mdx`
 - Metadata and routing handled in `app/blog/[slug]/page.tsx`
 - Blog posts must be registered in `app/data.ts`
 - Syntax highlighting provided by sugar-high
 
 ### Component Patterns
+
 - All UI components extend Motion-Primitives with custom animations
 - Components use TypeScript with explicit prop interfaces
 - Consistent use of `cn()` for className merging

@@ -31,7 +31,7 @@ export default function Personal() {
       className="space-y-24"
       variants={VARIANTS_CONTAINER}
       initial={false}
-      animate={mounted ? "visible" : "hidden"}
+      animate={mounted ? 'visible' : 'hidden'}
     >
       <HeroSection />
       <ProjectsSection />
