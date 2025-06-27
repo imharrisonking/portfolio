@@ -34,6 +34,8 @@ export function ProjectsSection() {
                 autoPlay
                 loop
                 muted
+                playsInline
+                preload="metadata"
                 className="aspect-video w-full rounded-xl"
               />
             </div>
