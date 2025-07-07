@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Distributed Monte Carlo Simulations with Spark RDD',
+  title: 'Distributed Monte Carlo Simulations with Spark RDDs',
   description:
     'How we built a 10,000+ simulation Monte Carlo system for UK electricity market forecasting using Spark RDDs instead of traditional HPC approaches. A deep dive into cloudpickle serialization, broadcasting strategies, and schema reattachment for financial modeling at scale.',
   alternates: {
@@ -14,20 +14,18 @@ export const metadata = {
   caption="Spark cluster processing Monte Carlo simulations"
 /> */}
 
-# Distributed Monte Carlo Simulations with Spark RDD
+# Distributed Monte Carlo Simulations with Spark RDDs
 
 The challenge: Running 10,000+ Monte Carlo simulations for UK electricity market forecasting. Traditional HPC approach: OpenMPI with complex message passing and node coordination. Our solution: Spark RDDs with cloudpickle serialization. Why this matters: Fault tolerance, dynamic scaling, and simplified state management.
 
 ---
 
-## Why Monte Carlo? The Cashflow Uncertainty Challenge
+## Why Monte Carlo?
 
-### The Regulatory Context
 The Low Carbon Contracts Company (LCCC) manages Contract for Difference (CfD) payments between renewable generators and electricity suppliers. Each quarter, we must calculate:
 - **Interim Levy Rate (ILR)**: The charge per MWh that suppliers must pay
 - **Total Reserve Amount (TRA)**: Cash reserves to ensure we never go negative
 
-### Calculating TRA
 The TRA calculation requires finding the 5th percentile worst case scenario. We can't use averages - we need the full distribution of outcomes. Monte Carlo gives us 10,000 possible scenarios for us to select the appropriate risk level from. The process involves:
 
 1. Run 10,000 quarterly simulations (or 2-year forecasts)
@@ -37,7 +35,7 @@ The TRA calculation requires finding the 5th percentile worst case scenario. We 
 5. Find minimum cash position in each simulation
 6. Select 5th percentile lowest cash position as the TRA
 
-### The Scale Challenge
+## The Scale Challenge
 Each simulation involves calculating hourly market interactions for:
 - 2,190 hours (quarterly) or 17,520 hours (2-year)
 - ~500 generators bidding into the market
@@ -56,7 +54,7 @@ Regulatory publishing deadlines are non-negotiable, so failing fast is essential
 
 Running these simulations synchronously is just not an option, and hardware memory limitations rule out using something like `multiprocessing.Pool` which is limited to running on a single machine. We therefore distribute the workload across worker nodes with each node handling a number of simulations.
 
-## Why We Chose Spark for Distributed Computing
+## Why We Chose Spark for the Job
 
 When building ELFO, we faced a classic choice: traditional HPC workflow with OpenMPI or distributed computing using MapReduce patterns with Spark. Given our team's focus on rapid development of an in-house Python model, the decision was strategic but had its trade-offs.
 
