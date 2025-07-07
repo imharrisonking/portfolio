@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { IBM_Plex_Serif } from 'next/font/google'
+import { IBM_Plex_Serif, IBM_Plex_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
 import { Header } from './header'
@@ -39,15 +39,21 @@ export const metadata: Metadata = {
   },
 }
 
-const imbPlexSerif = IBM_Plex_Serif({
+const ibmPlexSerif = IBM_Plex_Serif({
   variable: '--font-sans',
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+})
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: '--font-mono',
   weight: ['100', '200', '300', '400', '500', '600', '700'],
   subsets: ['latin'],
 })
 
 const departureMono = localFont({
   src: '../fonts/DepartureMono-Regular.woff2',
-  variable: '--font-mono',
+  variable: '--font-heading',
   display: 'swap',
 })
 
@@ -59,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${imbPlexSerif.variable} ${departureMono.variable} bg-background text-foreground tracking-tight antialiased`}
+        className={`${ibmPlexSerif.variable} ${ibmPlexMono.variable} ${departureMono.variable} bg-background text-foreground tracking-tight antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider

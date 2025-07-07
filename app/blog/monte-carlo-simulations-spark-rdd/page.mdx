@@ -1,0 +1,212 @@
+export const metadata = {
+  title: 'Distributed Monte Carlo Simulations with Spark RDD',
+  description:
+    'How we built a 10,000+ simulation Monte Carlo system for UK electricity market forecasting using Spark RDDs instead of traditional HPC approaches. A deep dive into cloudpickle serialization, broadcasting strategies, and schema reattachment for financial modeling at scale.',
+  alternates: {
+    canonical:
+      '/blog/distributed-monte-carlo-simulations-spark-rdds-openmpi-alternative',
+  },
+}
+
+{/* <Cover
+  src="https://cdn.cosmos.so/example-spark-cluster.jpg"
+  alt="Distributed computing cluster visualization"
+  caption="Spark cluster processing Monte Carlo simulations"
+/> */}
+
+# Distributed Monte Carlo Simulations with Spark RDD
+
+The challenge: Running 10,000+ Monte Carlo simulations for UK electricity market forecasting. Traditional HPC approach: OpenMPI with complex message passing and node coordination. Our solution: Spark RDDs with cloudpickle serialization. Why this matters: Fault tolerance, dynamic scaling, and simplified state management.
+
+---
+
+## Why Monte Carlo? The Cashflow Uncertainty Challenge
+
+### The Regulatory Context
+The Low Carbon Contracts Company (LCCC) manages Contract for Difference (CfD) payments between renewable generators and electricity suppliers. Each quarter, we must calculate:
+- **Interim Levy Rate (ILR)**: The charge per MWh that suppliers must pay
+- **Total Reserve Amount (TRA)**: Cash reserves to ensure we never go negative
+
+### Calculating TRA
+The TRA calculation requires finding the 5th percentile worst case scenario. We can't use averages - we need the full distribution of outcomes. Monte Carlo gives us 10,000 possible scenarios for us to select the appropriate risk level from. The process involves:
+
+1. Run 10,000 quarterly simulations (or 2-year forecasts)
+2. Each simulation models hourly electricity market interactions
+3. Calculate CfD payments for ~500 generators every hour
+4. Transform into cashflows accounting for payment lags
+5. Find minimum cash position in each simulation
+6. Select 5th percentile lowest cash position as the TRA
+
+### The Scale Challenge
+Each simulation involves calculating hourly market interactions for:
+- 2,190 hours (quarterly) or 17,520 hours (2-year)
+- ~500 generators bidding into the market
+- Complex merit order dispatch calculations
+- Managing state of each generator (e.g., unplanned outages, bidding strategies, SRMC based on hourly commodity prices)
+- Weather-correlated demand and renewable generation (bootstrapped from historical data)
+
+**Total: 10,000 simulations × 2,190 hours × 500 plants = 10.95 billion market interaction calculations**
+
+## Why Distributed Parallel Processing is Non-Negotiable
+Short runtimes are operationally critical - we need results within a tight window to allow for potential re-runs within the same working day if issues arise.
+
+Additionally, we must run as close to the publishing date as possible to ensure we have the most accurate view of market prices. This means we can't start runs days in advance - we need reliable, fast execution on the day of publication.
+
+Regulatory publishing deadlines are non-negotiable, so failing fast is essential. If we discover data quality issues or model problems at hour 3, we need enough time to fix and re-run before the publishing deadline.
+
+Running these simulations synchronously is just not an option, and hardware memory limitations rule out using something like `multiprocessing.Pool` which is limited to running on a single machine. We therefore distribute the workload across worker nodes with each node handling a number of simulations.
+
+## Why We Chose Spark for Distributed Computing
+
+When building ELFO, we faced a classic choice: traditional HPC workflow with OpenMPI or distributed computing using MapReduce patterns with Spark. Given our team's focus on rapid development of an in-house Python model, the decision was strategic but had its trade-offs.
+
+### Why Spark Won for Our Use Case
+
+**Development Velocity**: Our simulations are embarrassingly parallel - each Monte Carlo run is independent. Spark's high-level APIs meant we could focus on writing business logic with an API similar to `multiprocessing.Pool` rather than low-level MPI message passing.
+
+**Databricks Integration**: We were already using Databricks for data processing pipelines. Having simulations run on the same platform simplified operations, monitoring, and data access patterns.
+
+**Fault Tolerance**: Spark's automatic recovery from node failures through RDD lineage was essential - we've had individual nodes fail hours into a run without losing the entire job.
+
+### What We Gave Up with MPI
+
+**Performance**: MPI would likely give us better performance per core due to:
+- No JVM overhead or garbage collection pauses
+- Direct memory management for our large state objects
+- Optimized communication for shared reference data
+
+**Serialization Overhead**: Cloudpickle serialization of complex Python objects isn't free. Each worker must deserialize the full simulation engine on startup, and Python object serialization has inherent overhead compared to native data structures.
+
+**Memory Efficiency**: Our broadcast variables (let's call it 1GB of data) push Spark's limits. MPI's shared memory within nodes would be more efficient for sharing reference data like forward curves and plant characteristics.
+
+**Communication and Control**: MPI allows precise resource allocation and custom communication patterns if our simulations ever needed inter-process coordination. For example, moving to [zonal pricing in Great Britain](https://www.lcp.com/en/insights/publications/zonal-pricing-in-great-britain) may require more complex coordination between simulations, which Spark's RDD model doesn't support.
+
+### The Bottom Line
+
+Running on Databricks simplified our operational model:
+- No cluster setup or MPI configuration
+- Built-in monitoring and debugging through Spark UI
+- Seamless data access to Delta Lake
+- Auto-scaling based on workload
+- Integration with our existing data pipelines
+
+For a small team of 4 we needed an appropriate solution that "just worked" while still delivering strong computational performance. The trade-off was between maximum efficiency and operational reliability.
+
+---
+
+## RDDs for Embarrassingly Parallel Workloads
+Our requiresments fit the classic "embarrassingly parallel" model, where each simulation is independent and can be run in isolation. This is a perfect fit for Spark's RDD model, which allows us to distribute these independent tasks across a cluster of machines.
+
+
+```python
+# From RunSimulationAndCashflowEngines.py:99-104
+rdd = self.sc.parallelize(
+    [(i, broadcast_engine)
+     for i in range(simulation_engine.number_Of_Simulations)],
+    numSlices=simulation_engine.number_Of_Simulations
+)
+rdd = rdd.map(lambda x: Simulation(*x))
+rdd = rdd.map(lambda simulation: simulation.run())
+```
+
+### Why RDDs Over DataFrames Here
+- Simulation objects contain complex state to simulate complex market interactions of energy generators (complex bidding behaviour based on hourly commodity prices, generator plant state, unplanned outages, etc.)
+- Need fine-grained control over partitioning (one simulation per partition)
+- DataFrames would require flattening our object model
+- RDDs preserve Python object semantics
+
+## The Serialization Challenge
+
+### Serializing Complex Objects
+```python
+# From RunSimulationAndCashflowEngines.py:95-96
+serialized_engine = cloudpickle.dumps(simulation_engine)
+broadcast_engine = self.sc.broadcast(serialized_engine)
+```
+
+### What Gets Serialized
+- Forward curves with 8760 hourly prices
+- Stochastic process parameters
+- Plant technical characteristics
+- Market coupling matrices
+- Weather correlation structures
+
+### The Broadcast Pattern
+```python
+# Inside each worker, deserialize once per partition
+def run_simulation(args):
+    sim_id, broadcast_engine, scaling_dict = args
+    engine = cloudpickle.loads(broadcast_engine.value)
+    # Now we have a full simulation engine on each worker
+```
+
+### Performance Impact
+- Without broadcast: 1GB × 10,000 = 10TB of network traffic
+- With broadcast: 1GB × number of workers (typically ~100)
+- 100x reduction in data movement
+
+---
+
+## From RDDs to DataFrames: Simulations to Cashflows
+
+### Two-Stage Architecture
+While RDDs excel at distributing our simulation objects, cashflow calculations demand DataFrame operations. Here's how we bridge the gap:
+
+```python
+# RDD for parallel simulation computation
+simulation_results_rdd = rdd.map(lambda sim: sim.run())
+
+# Convert to DataFrame for cashflow calculations
+hourly_prices_df = spark.createDataFrame(
+    simulation_results_rdd.flatMap(lambda x: x.hourly_prices),
+    schema=price_schema
+)
+
+# Now we can leverage DataFrame operations across all simulations
+cashflows_df = hourly_prices_df \
+    .withColumn("cfd_payment",
+        F.col("strike_price") - F.col("market_price")
+    ) \
+    .withColumn("daily_cashflow",
+        F.sum("cfd_payment").over(daily_window)
+    ) \
+    .withColumn("payment_date",
+        F.date_add("delivery_date", payment_lag_days)
+    )
+```
+
+### Why This Hybrid Approach Works
+- **RDDs for Complex Objects**: Simulation engines with state, random generators, and methods
+- **DataFrames for Financial Math**: Vectorized operations, SQL-like transformations, efficient multi-level aggregations
+- **Best of Both Worlds**: Object-oriented simulations feeding functional cashflow pipelines
+
+---
+
+## Conclusion
+
+### Key Takeaways
+- RDDs aren't dead - they excel at distributing complex Python objects
+- Cloudpickle + broadcast = simple distributed computing but with serialization overhead
+- Fault tolerance comes free with proper partitioning
+- Sometimes the "old" Spark APIs are the right tool
+
+### When to Use This Pattern
+- Complex Python objects that don't fit DataFrame model
+- Embarrassingly parallel workloads
+- Need fault tolerance without complexity
+- Working with legacy Python simulation code
+
+### What's Next
+- Exploring performance tuning within Simulations (custom C extensions, Cython, or Numba)
+- Testing alternative framework like Dask or Polars for DataFrame operations
+- GPU acceleration for individual simulations
+
+---
+
+### Further Reading
+
+- [Apache Spark RDD Programming Guide](https://spark.apache.org/docs/latest/rdd-programming-guide.html)
+- [Cloudpickle Documentation](https://github.com/cloudpipe/cloudpickle)
+- [Databricks Best Practices](https://docs.databricks.com/spark/latest/sparkcontext.html)
+
+---

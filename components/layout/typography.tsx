@@ -10,7 +10,7 @@ export function TypographyH1({ children, className }: TypographyProps) {
   return (
     <h1
       className={cn(
-        'dark:text-accent text-accent scroll-m-20 font-mono text-base font-semibold tracking-wider text-balance uppercase',
+        'dark:text-accent text-accent font-heading scroll-m-20 text-base font-semibold tracking-wider text-balance uppercase',
         className,
       )}
     >
@@ -23,7 +23,7 @@ export function TypographyH2({ children, className }: TypographyProps) {
   return (
     <h2
       className={cn(
-        'text-foreground mb-4 scroll-m-20 font-mono text-base font-semibold tracking-wider text-balance uppercase first:mt-0 dark:text-white',
+        'text-foreground font-heading mb-4 scroll-m-20 text-base font-semibold tracking-wider text-balance uppercase first:mt-0 dark:text-white',
         className,
       )}
     >

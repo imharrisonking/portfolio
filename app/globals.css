@@ -4,8 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-imb-plex-serif);
-  --font-mono: var(--font-departure-mono);
+  --font-sans: var(--font-ibm-plex-serif);
+  --font-heading: var(--font-departure-mono);
+  --font-mono: var(--font-ibm-plex-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
