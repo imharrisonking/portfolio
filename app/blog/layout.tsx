@@ -46,7 +46,7 @@ export default function LayoutBlogPost({
       {/* <div className="absolute top-24 right-4">
         <CopyButton />
       </div> */}
-      <main className="prose prose-gray dark:prose-invert prose-h1:text-3xl prose-h1:md:text-4xl prose-h1:font-medium prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:font-medium prose-h2:mt-12 prose-h2:scroll-m-20 prose-h3:text-xl prose-h3:md:text-2xl prose-h3:font-medium prose-h4:text-lg prose-h4:font-medium prose-strong:font-medium pb-20">
+      <main className="prose prose-p:leading-relaxed prose-black dark:prose-invert prose-p:text-sm prose-a:text-sm prose-li:text-sm prose-figure:text-sm prose-ul:text-sm prose-ol:text-sm prose-pre:text-sm prose-code:text-[13px] prose-h1:text-2xl prose-h1:md:text-3xl prose-h1:font-medium prose-h2:text-xl prose-h2:md:text-2xl prose-h2:font-medium prose-h2:mt-12 prose-h2:scroll-m-20 prose-h3:text-lg prose-h3:md:text-xl prose-h3:font-medium prose-h4:text-base prose-h4:font-normal prose-h4:mt-5 prose-strong:font-medium pb-20">
         {children}
       </main>
     </>

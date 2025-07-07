@@ -97,7 +97,6 @@ Our requiresments fit the classic "embarrassingly parallel" model, where each si
 
 
 ```python
-# From RunSimulationAndCashflowEngines.py:99-104
 rdd = self.sc.parallelize(
     [(i, broadcast_engine)
      for i in range(simulation_engine.number_Of_Simulations)],
@@ -117,7 +116,6 @@ rdd = rdd.map(lambda simulation: simulation.run())
 
 ### Serializing Complex Objects
 ```python
-# From RunSimulationAndCashflowEngines.py:95-96
 serialized_engine = cloudpickle.dumps(simulation_engine)
 broadcast_engine = self.sc.broadcast(serialized_engine)
 ```
@@ -201,10 +199,8 @@ cashflows_df = hourly_prices_df \
 
 ---
 
-### Further Reading
+## Further Reading
 
+- [LCCC Levy Forecasting Methodology](https://lcc-web-production-eu-west-2-files20230703161747904200000001.s3.amazonaws.com/documents/Low_Carbon_Contracts_LCCC_Levy_Forecasting_Methodology.pdf)
 - [Apache Spark RDD Programming Guide](https://spark.apache.org/docs/latest/rdd-programming-guide.html)
-- [Cloudpickle Documentation](https://github.com/cloudpipe/cloudpickle)
-- [Databricks Best Practices](https://docs.databricks.com/spark/latest/sparkcontext.html)
-
----
+- [Cloudpickle Package](https://github.com/cloudpipe/cloudpickle)

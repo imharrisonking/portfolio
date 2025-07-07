@@ -1,7 +1,19 @@
 import type { MDXComponents } from 'mdx/types'
 import { ComponentPropsWithoutRef, ReactElement } from 'react'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import {
+  stackoverflowDark,
+  stackoverflowLight,
+} from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import python from 'react-syntax-highlighter/dist/esm/languages/hljs/python'
+import bash from 'react-syntax-highlighter/dist/esm/languages/hljs/bash'
+import javascript from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript'
+
+// Register languages
+SyntaxHighlighter.registerLanguage('python', python)
+SyntaxHighlighter.registerLanguage('bash', bash)
+SyntaxHighlighter.registerLanguage('javascript', javascript)
+SyntaxHighlighter.registerLanguage('js', javascript)
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -36,18 +48,42 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const code = child.props.children || ''
 
       return (
-        <SyntaxHighlighter
-          language={language}
-          style={tomorrow}
-          customStyle={{
-            borderRadius: '0.5rem',
-            fontSize: '0.875rem',
-            margin: '1rem 0',
-            padding: '1rem',
-          }}
-        >
-          {code.trim()}
-        </SyntaxHighlighter>
+        <div className="relative">
+          {/* Dark theme code block */}
+          <div className="hidden dark:block">
+            <SyntaxHighlighter
+              language={language}
+              style={stackoverflowDark}
+              customStyle={{
+                borderRadius: '0.5rem',
+                fontSize: '0.625rem !important',
+                margin: '1rem 0',
+                padding: '1rem',
+                fontFamily:
+                  'IBM Plex Mono, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
+              }}
+            >
+              {code.trim()}
+            </SyntaxHighlighter>
+          </div>
+          {/* Light theme code block */}
+          <div className="block dark:hidden">
+            <SyntaxHighlighter
+              language={language}
+              style={stackoverflowLight}
+              customStyle={{
+                borderRadius: '0.5rem',
+                fontSize: '0.625rem !important',
+                margin: '1rem 0',
+                padding: '1rem',
+                fontFamily:
+                  'IBM Plex Mono, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
+              }}
+            >
+              {code.trim()}
+            </SyntaxHighlighter>
+          </div>
+        </div>
       )
     },
     code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
