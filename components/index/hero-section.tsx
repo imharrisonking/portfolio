@@ -17,11 +17,11 @@ const TRANSITION_SECTION = {
 export function HeroSection() {
   return (
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <TypographyP className="text-foreground text-sm leading-relaxed first-letter:float-left first-letter:mr-1 first-letter:text-[52px] first-letter:leading-[0.85] first-letter:font-normal">
-        Currently I work as a Senior Quant Developer at the Low Carbon Contracts
-        Company. I like building distributed quantitative forecasting models
-        professionally, and creating scalable user-centric products personally.
-        I love working on truly impactful, mission-driven projects.
+      <TypographyP className="text-foreground text-base">
+        Currently a Senior Quant Developer at the Low Carbon Contracts Company,
+        building quantitative forecasting models professionally, and creating
+        scalable user-centric products personally. I love working on truly
+        impactful, mission-driven projects.
       </TypographyP>
     </motion.section>
   )

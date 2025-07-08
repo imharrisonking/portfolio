@@ -60,7 +60,12 @@ export function TypographyH4({ children, className }: TypographyProps) {
 
 export function TypographyP({ children, className }: TypographyProps) {
   return (
-    <p className={cn('text-sm [&:not(:first-child)]:mt-6', className)}>
+    <p
+      className={cn(
+        'text-foreground text-sm leading-relaxed [&:not(:first-child)]:mt-6',
+        className,
+      )}
+    >
       {children}
     </p>
   )
