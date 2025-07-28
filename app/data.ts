@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
     name: 'Propagate',
     description:
       'A platform to build and deploy your own fully branded and native fitness app.',
-    link: 'https://github.com/propagate-digital/propagate',
+    link: 'https://github.com/propagate-digital/propagat',
     video:
       'https://res.cloudinary.com/dejm6tfy8/video/upload/f_auto:video,q_auto/propagate-demo-1080p_yzeaya',
     id: 'project1',
