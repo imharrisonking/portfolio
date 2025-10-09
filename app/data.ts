@@ -88,7 +88,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     link: 'https://www.arup.com',
     id: 'work4',
     image:
-      'https://media.licdn.com/dms/image/v2/D4E0BAQGJio-1N-Cssg/company-logo_200_200/company-logo_200_200/0/1686582688780/arup_logo?e=1756339200&v=beta&t=t_hN9M9H1bSQdkpEEDel0TJsaMUwFx9RmBJ7ycrKAzg',
+      'https://res.cloudinary.com/dejm6tfy8/image/upload/v1760000174/arup-logo_vtc3pr.png',
   },
 ]
 
