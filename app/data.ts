@@ -94,16 +94,16 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'Multithreading Producer-Consumer Patterns',
+    title: 'Multithreaded Producer-Consumer File Writing Patterns',
     description:
-      'How I used a producer-consumer multithreading pattern for non-blocking file writes with PySpark.',
-    link: '/blog/multithreading-producer-consumer-patterns',
+      'Multithreaded producer-consumer pattern for non-blocking file writes with PySpark.',
+    link: '/blog/multithreaded-producer-consumer-patterns',
     uid: 'blog-2',
   },
   {
     title: 'Distributed Monte Carlo Simulations with Spark RDDs',
     description:
-      'How we use PySpark to run 10,000 parallel electricity market simulations every quarter.',
+      'Using PySpark to run 10,000 parallel electricity market simulations every quarter.',
     link: '/blog/monte-carlo-simulations-spark-rdd',
     uid: 'blog-1',
   },

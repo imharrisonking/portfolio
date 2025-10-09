@@ -1,10 +1,10 @@
 export const metadata = {
-  title: 'Multithreading Producer-Consumer Patterns',
+  title: 'Multithreaded Producer-Consumer File Writing Patterns',
   description:
-    'How I used a producer-consumer multithreading pattern for non-blocking file writes with PySpark. A deep dive into DataFrame materialisation, resource management, and avoiding executor contention in distributed data processing.',
+    'How I used a multithreaded producer-consumer pattern for non-blocking file writes with PySpark. A deep dive into DataFrame materialisation, resource management, and avoiding executor contention in distributed data processing.',
   alternates: {
     canonical:
-      '/blog/multithreading-producer-consumer-patterns',
+      '/blog/multithreaded-producer-consumer-patterns',
   },
 }
 
@@ -14,7 +14,7 @@ export const metadata = {
   caption="Producer-consumer threading pattern for PySpark file operations"
 /> */}
 
-# Multithreading Producer-Consumer Patterns in PySpark
+# Multithreaded Producer-Consumer File Writing Patterns in PySpark
 
 File write operations block the main processing threads in large-scale PySpark applications which writes waste valuable computation time as the CPU sits idle waiting for I/O operations to complete. The most obvious fix would be to use AsyncIO, but this doesn't work with PySpark's distributed JVM architecture. One solution is to implement the producer-consumer design pattern with multithreading. This gave us a 20-30% performance improvements through concurrent execution of I/O and computation.
 
@@ -177,7 +177,7 @@ def write_Table(self, table: OutputTable) -> None:
     table.data.take(1)  # Fast trigger (faster than count())
 
     # Now submit to background writer (truly non-blocking)
-    self.write_Manager.submit_write(table)
+    self.write_manager.submit_write(table)
 ```
 
 **Why `take(1)` instead of `count()`?**

@@ -144,4 +144,9 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Remove background from code inside pre blocks */
+  .prose pre code {
+    background-color: transparent !important;
+  }
 }

@@ -18,10 +18,9 @@ export function HeroSection() {
   return (
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
       <TypographyP className="text-foreground text-base">
-        Currently a Senior Quant Developer at the Low Carbon Contracts Company,
-        building quantitative forecasting models professionally, and creating
-        scalable user-centric products personally. I love working on truly
-        impactful, mission-driven projects.
+        Senior Quant Developer at the Low Carbon Contracts Company working on
+        high-performance distributed systems for climate impact. Also building
+        Propagate to help fitness creators launch their own apps.
       </TypographyP>
     </motion.section>
   )
