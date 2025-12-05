@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: 'Harrison King | Quant Developer & Founder',
+    default: 'Harrison King | Software Engineer',
     template: '%s | Harrison King',
   },
   description: `Building distributed quantitative forecasting models professionally.
