@@ -19,8 +19,8 @@ export function HeroSection() {
         >
             <TypographyP className="text-foreground text-base">
                 Currently working on high-performance distributed systems for
-                climate impact. Also building Propagate, a platform to help
-                fitness creators launch their own mobile apps.
+                climate impact. Also building Structa, an AI-powered workspace
+                to help plan your home renovation.
             </TypographyP>
         </motion.section>
     )

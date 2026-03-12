@@ -20,7 +20,7 @@ export function Header() {
                     speed={0.01}
                     characters="."
                 >
-                    Software Engineer
+                    Software Engineer &amp; Founder
                 </TextScramble>
             </div>
         </header>

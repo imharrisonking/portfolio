@@ -7,82 +7,82 @@ import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
 
 export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  themeColor: '#ffffff',
+    width: 'device-width',
+    initialScale: 1,
+    themeColor: '#ffffff',
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://harrisonk.ing'),
-  alternates: {
-    canonical: '/',
-  },
-  title: {
-    default: 'Harrison King | Software Engineer',
-    template: '%s | Harrison King',
-  },
-  description: `Building distributed quantitative forecasting models professionally.
-  Creating scalable user-centric products personally.`,
-  icons: {
-    icon: [
-      {
-        type: 'image/ico',
-        media: '(prefers-color-scheme: light)',
-        url: '/icon-light.ico',
-      },
-      {
-        type: 'image/ico',
-        media: '(prefers-color-scheme: dark)',
-        url: '/icon-dark.ico',
-      },
-    ],
-  },
+    metadataBase: new URL('https://harrisonk.ing'),
+    alternates: {
+        canonical: '/',
+    },
+    title: {
+        default: 'Harrison King | Software Engineer',
+        template: '%s | Harrison King',
+    },
+    description: `Building distributed quantitative forecasting models professionally.
+  Creating beautiful products personally.`,
+    icons: {
+        icon: [
+            {
+                type: 'image/ico',
+                media: '(prefers-color-scheme: light)',
+                url: '/icon-light.ico',
+            },
+            {
+                type: 'image/ico',
+                media: '(prefers-color-scheme: dark)',
+                url: '/icon-dark.ico',
+            },
+        ],
+    },
 }
 
 const ibmPlexSerif = IBM_Plex_Serif({
-  variable: '--font-sans',
-  weight: ['100', '200', '300', '400', '500', '600', '700'],
-  subsets: ['latin'],
+    variable: '--font-sans',
+    weight: ['100', '200', '300', '400', '500', '600', '700'],
+    subsets: ['latin'],
 })
 
 const ibmPlexMono = IBM_Plex_Mono({
-  variable: '--font-mono',
-  weight: ['100', '200', '300', '400', '500', '600', '700'],
-  subsets: ['latin'],
+    variable: '--font-mono',
+    weight: ['100', '200', '300', '400', '500', '600', '700'],
+    subsets: ['latin'],
 })
 
 const departureMono = localFont({
-  src: '../fonts/DepartureMono-Regular.woff2',
-  variable: '--font-heading',
-  display: 'swap',
+    src: '../fonts/DepartureMono-Regular.woff2',
+    variable: '--font-heading',
+    display: 'swap',
 })
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode
+    children: React.ReactNode
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${ibmPlexSerif.variable} ${ibmPlexMono.variable} ${departureMono.variable} bg-background text-foreground tracking-tight antialiased`}
-        suppressHydrationWarning
-      >
-        <ThemeProvider
-          enableSystem={true}
-          attribute="class"
-          storageKey="theme"
-          defaultTheme="system"
-        >
-          <div className="flex min-h-screen w-full flex-col font-sans">
-            <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
-              <Header />
-              {children}
-              <Footer />
-            </div>
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
-  )
+    return (
+        <html lang="en" suppressHydrationWarning>
+            <body
+                className={`${ibmPlexSerif.variable} ${ibmPlexMono.variable} ${departureMono.variable} bg-background text-foreground tracking-tight antialiased`}
+                suppressHydrationWarning
+            >
+                <ThemeProvider
+                    enableSystem={true}
+                    attribute="class"
+                    storageKey="theme"
+                    defaultTheme="system"
+                >
+                    <div className="flex min-h-screen w-full flex-col font-sans">
+                        <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
+                            <Header />
+                            {children}
+                            <Footer />
+                        </div>
+                    </div>
+                </ThemeProvider>
+            </body>
+        </html>
+    )
 }
